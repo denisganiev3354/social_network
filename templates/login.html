@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'master.css')}}">
+</head>
+<body>
+    
+
+<div class="login-card">
+    <form method="post" action="/login" class="form">
+        <div class="field">
+            <label>Your login:</label>
+            <input type="text" name="login" id="login" required>
+        </div>
+        <div class="field">
+            <label>Your password:</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <label class="checkbox">
+            <input type="checkbox" name="remember"> Remember me
+        </label>
+        <div class="forgot">
+            <a href="/forgot" class="forgot-link"> Forgot password?</a>
+        </div>
+        <button type="submit">Sign me</button>
+        <div class="forgot">
+            <a href="/registration" calss="forgot-link">Registration</a>
+        </div>
+    </form>
+</div>
+<!-- <script src="{{url_for('static', filename = 'master.js')}}"></script> -->
+</body>
+</html>
