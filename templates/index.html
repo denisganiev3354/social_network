@@ -6,8 +6,22 @@
     <title>index</title>
 </head>
 <body>
-    <p>Привет, {{username}}!</p>
-    <a href="/logout">Выйти</a>
-    <a href="/login">Войти</a>
+    <div>
+        <p>Привет, {{username}}!</p>
+        <a href="/logout">Выйти</a>
+        <a href="/login">Войти</a>
+    </div>
+    <!-- точка монтирования react --> 
+    <div id="root"></div>
+    <script>
+        // Создание элемента
+        let btn = document.createElement("button");
+        // Модификация элемента
+        btn.innerText = "Нажми меня"
+        btn.classList.add("btn","btn-danger");
+        let mountPoint = document.getElementById("root");
+        // Размещения элемента
+        mountPoint.append(btn);
+    </script>
 </body>
 </html>
