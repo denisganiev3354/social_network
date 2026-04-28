@@ -11,6 +11,8 @@ USERS = {
     "user": 'pass456'
 }
 
+NEWS = []
+
 @app.route("/")
 def main_page():
     login = session.get('username')
