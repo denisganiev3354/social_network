@@ -3,5 +3,5 @@ import { createElement } from "react";
 let rootElement = document.getElementById("root");
 let rootComponent = createRoot(rootElement);
 rootComponent.render(
-    createElement("h1")
+    createElement("h1", {}, "Hello World!")
 )

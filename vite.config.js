@@ -1,5 +1,5 @@
-import {resolve} from 'node';
-import {defineConfig, resolveConfig} from 'vite'
+import { resolve } from 'node:path';
+import { defineConfig } from 'vite'
 
 export default defineConfig({
     build: {
@@ -8,8 +8,8 @@ export default defineConfig({
         rolldownOptions: {
             input: resolve(import.meta.dirname, 'src/master.js'),
             output: {
-                entryFileNames: '[name].js'
-                entryFileNames: '[name].[ext]'
+                entryFileNames: '[name].js',
+                assetileNames: '[name].[ext]'
             }
         }
     }
