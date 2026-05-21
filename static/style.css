@@ -1,0 +1,202 @@
+/* Современный красивый дизайн для сайта новостей */
+
+:root {
+    --primary: #4361ee;
+    --primary-dark: #3a56d4;
+    --secondary: #7209b7;
+    --success: #4cc9f0;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray: #6c757d;
+    --border: #dee2e6;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --radius: 12px;
+    --transition: all 0.2s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fb 0%, #e4e8f0 100%);
+    color: var(--dark);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Заголовок */
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--primary);
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+/* Приветствие и ссылки */
+.container > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.container a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.container a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Кнопка загрузки */
+#root button {
+    display: block;
+    margin: 1.5rem auto;
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: var(--transition);
+    outline: none;
+}
+
+#root button:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+#root button:disabled {
+    background: var(--gray);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Таблица */
+.news-table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 1rem;
+}
+
+.news-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.news-table th {
+    background: linear-gradient(180deg, #f8fafc, #f1f5f9);
+    padding: 1.2rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--primary-dark);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border);
+}
+
+.news-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s ease;
+}
+
+.news-table tr:hover td {
+    background: #f1f8ff;
+}
+
+.news-title {
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1.05rem;
+}
+
+.news-text {
+    color: var(--gray);
+    line-height: 1.5;
+    max-width: 450px;
+}
+
+.news-author {
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.news-date {
+    color: var(--gray);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Счётчик */
+.counter {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 0 0 var(--radius) var(--radius);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .container > div:first-child {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .news-text {
+        min-width: 200px;
+    }
+
+    .counter {
+        text-align: center;
+    }
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.news-table tbody tr {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+/* Плавная загрузка */
+#newsCounter {
+    opacity: 0;
+    animation: fadeIn 0.6s ease 0.2s forwards;
+}

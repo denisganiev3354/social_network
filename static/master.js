@@ -1,38 +1,57 @@
-// создаём кнопку
 let btn = document.createElement('button');
-//модификация
 btn.innerText = "Загрузить новости";
-btn.classList.add("btn", "btn-primary");
-//точка монтирования 
-let root = document.querySelector("#root");
-root.append(btn);
+btn.classList.add("btn", "btn-success", "mb-3");
+document.querySelector("#root").append(btn);
 
-//Добавить обработчик 
+btn.addEventListener("click", async () => {
+    btn.disabled = true;
+    btn.innerText = "Загружаю...";
 
-btn.addEventListener("click", async event => {
-    // new XMLHttpRequest()
-    let response = await fetch("/api/v1/news ");
-    let data = await response.json();
+    try {
+        const response = await fetch("/api/v1/news");
+        const newsList = await response.json();
 
-    let content = data.map(row => `<tr> 
-        <th>${row.title}</th>
-        <th>${row.text}</th>
-        <th>${row.author}</th>
-        <th>${row.date}</th>
-        </tr> `)
-    root.insertAdjacentHTML('beforeend',`
-        <table>
-        <thead>
-        <tr>
-        <th>title</th>
-        <th>text</th>
-        <th>author</th>
-        <th>date</th>
-        </tr>
-        </thead>
-        <tbody>
-        ${content.join("")}
-        </tbody>
-        </table>
-        `)
-})
+        const tableBody = document.querySelector("#newsTableBody");
+        tableBody.innerHTML = '';
+
+        newsList.forEach(news => {
+            const row = document.createElement('tr');
+
+            const titleCell = document.createElement('td');
+            titleCell.className = 'news-title';
+            titleCell.textContent = news.title;
+            row.appendChild(titleCell);
+
+            const textCell = document.createElement('td');
+            textCell.className = 'news-text';
+            textCell.textContent = news.text;
+            row.appendChild(textCell);
+
+            const authorCell = document.createElement('td');
+            authorCell.className = 'news-author';
+            authorCell.textContent = news.author;
+            row.appendChild(authorCell);
+
+            const dateCell = document.createElement('td');
+            dateCell.className = 'news-date';
+            dateCell.textContent = formatDate(news.date);
+            row.appendChild(dateCell);
+
+            tableBody.appendChild(row);
+        });
+
+        document.getElementById("newsCounter").textContent = `Всего новостей: ${newsList.length}`;
+
+    } catch (error) {
+        console.error("Ошибка загрузки новостей:", error);
+        document.getElementById("newsCounter").textContent = "Ошибка загрузки новостей.";
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "Загрузить новости";
+    }
+});
+
+function formatDate(dateStr) {
+    const [year, month, day] = dateStr.split('-');
+    return `${day}.${month}.${year}`;
+}
