@@ -1,0 +1,16 @@
+services :
+  # guinicorn
+  web-server: 
+    image: nginx:stable-alpine3.23
+    ports:
+      - "8080:80"
+    volumes:
+      - ./templates:/usr/share/nginx/html/templates:ro
+      - ./static:/usr/share/nginx/html/satatic:ro
+  # nginx
+  backend:
+    build: .
+    volumes:
+      - ./main.py:/app/main.py
+    ports:
+      - "8000:8000"
